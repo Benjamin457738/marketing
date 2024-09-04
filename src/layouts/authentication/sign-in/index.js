@@ -77,7 +77,7 @@ function Basic() {
                   color="info"
                   fontWeight="medium"
                   textGradient
-                  ml={20}
+                  ml="40%"
                 >
                   Sign up
                 </MDTypography>
