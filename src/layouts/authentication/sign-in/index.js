@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -13,6 +13,10 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
+import axios from "axios";
+
+import { baseUrl } from 'consts';
+
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
@@ -20,7 +24,27 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 function Basic() {
+  const navigate = useNavigate()
+
   const [rememberMe, setRememberMe] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignin = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    const userData = {
+      email,
+      password,
+    };
+    const response = await axios.post(`${baseUrl}/user/signin`, userData);
+
+    console.log("444", response);
+
+    
+    localStorage.setItem('token', response.data)
+
+    navigate('/dashboard')
+  };
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -43,13 +67,15 @@ function Basic() {
           </MDTypography>
         </MDBox>
         <MDBox pt={5} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handleSignin}>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput type="email" label="Email"  value={email}
+                onChange={(e) => setEmail(e.target.value)} fullWidth />
             </MDBox>
             <br />
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput type="password" label="Password"  value={password}
+                onChange={(e) => setPassword(e.target.value)} fullWidth />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -64,7 +90,7 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton type="submit" variant="gradient" color="info" fullWidth>
                 sign in
               </MDButton>
             </MDBox>

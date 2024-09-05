@@ -1,9 +1,9 @@
 // react-router-dom components
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import { useState } from "react";
 import axios from "axios";
 
 // Material Dashboard 2 React components
@@ -12,16 +12,21 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
+import { baseUrl } from "consts";
+
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 function Cover() {
+  const navigate = useNavigate()
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -29,19 +34,19 @@ function Cover() {
       firstName,
       lastName,
       email,
-      phoneNumber,
+      phone: phoneNumber,
       country,
       password,
+      confirmPassword: confirm
     };
-    console.log(userData);
-    try {
-      const response = await axios.post("https://localhost:5000/user/signup", userData);
-      console.log("Signup successful:", response.data);
-      // Handle successful signup, e.g., redirect user or show a success message
-    } catch {
-      console.log("");
-      // Handle error, e.g., show an error message to the user
-    }
+    const response = await axios.post(`${baseUrl}/user/signup`, userData);
+
+    console.log("444", response);
+
+    
+    localStorage.setItem('token', response.data)
+
+    navigate('/authentication/signin')
   };
 
   return (
@@ -122,6 +127,14 @@ function Cover() {
                 fullWidth
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+              />
+              <MDInput
+                type="password"
+                label="confirmPassword"
+                variant="standard"
+                fullWidth
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
               />
             </MDBox>
             <MDBox mt={4} mb={1}>
