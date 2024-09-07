@@ -30,7 +30,7 @@ function Dashboard() {
                 color="dark"
                 icon="weekend"
                 title="Balance"
-                count={281}
+                count="$1,900"
                 percentage={{
                   color: "success",
                   amount: "+55%",
@@ -44,7 +44,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 icon="leaderboard"
                 title="Profit"
-                count="2,300"
+                count="$2,300"
                 percentage={{
                   color: "success",
                   amount: "+3%",
@@ -59,7 +59,7 @@ function Dashboard() {
                 color="success"
                 icon="store"
                 title="Returns"
-                count="34k"
+                count="34"
                 percentage={{
                   color: "success",
                   amount: "+1%",
