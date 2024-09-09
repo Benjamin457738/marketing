@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2  React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo } from "react";
 
 // porp-types is a library for typechecking of props
@@ -71,7 +56,7 @@ function ReportsLineChart({ color, title, description, date, chart }) {
               py={2}
               pr={0.5}
               mt={-5}
-              height="12.5rem"
+              height="20.5rem"
             >
               <Line data={data} options={options} redraw />
             </MDBox>
