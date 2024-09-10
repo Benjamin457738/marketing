@@ -1,40 +1,70 @@
-// @mui material components
-import { Card } from "@mui/material";
-import Grid from "@mui/material/Grid";
+import React, { useState } from 'react';
+import { TextField, Button, Card, CardContent, Typography, Container, CircularProgress, Grid } from '@mui/material';
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import MDBox from 'components/MDBox';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 
-// Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+const Deposit = () => {
+  const [amount, setAmount] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
-// Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+  const handleDeposit = () => {
+    setLoading(true);
+    setMessage('');
 
-// Data
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
-
-function Deposit() {
-  const { sales, tasks } = reportsLineChartData;
+    // Simulate an API call
+    setTimeout(() => {
+      setLoading(false);
+      setAmount('');
+      setMessage('Deposit successful!');
+    }, 2000);
+  };
 
   return (
     <DashboardLayout>
-      {/* <DashboardNavbar /> */}
-      <MDBox py={3}>
+      <DashboardNavbar />
       <MDBox mt={4.5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={12}>
-                <Card item lg={8} sx={{ height: "100%" }}>
-                  <MDTypography  component="div" variant="button" color="text" fontWeight="light" padding="50px">
-                    Matrix 2:{}
-                    M
-                  </MDTypography>
-                </Card>
-            </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={12}>
+            <Container maxWidth="sm">
+              <Card style={{ marginTop: '20px', padding: '20px' }}>
+                <CardContent>
+                  <Typography variant="h4" component="h1" align="center" gutterBottom>
+                    Deposit Funds
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    label="Amount"
+                    variant="outlined"
+                    margin="normal"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Enter amount"
+                    type="number"
+                  />
+                  <Button
+                    variant="contained"
+                    color="dark"
+                    fullWidth
+                    onClick={handleDeposit}
+                    disabled={loading || !amount}
+                  >
+                    {loading ? <CircularProgress size={24} /> : 'Deposit'}
+                  </Button>
+                  {message && (
+                    <Typography variant="body1" color="success.main" align="center" style={{ marginTop: '10px' }}>
+                      {message}
+                    </Typography>
+                  )}
+                </CardContent>
+              </Card>
+            </Container>
           </Grid>
-        </MDBox>
+        </Grid>
       </MDBox>
-      {/* <Footer /> */}
     </DashboardLayout>
   );
-}
+};
 
 export default Deposit;

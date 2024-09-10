@@ -13,6 +13,7 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import MDTypography from "components/MDTypography";
 import { Card } from "@mui/material";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -20,7 +21,7 @@ function Dashboard() {
 
   return (
     <DashboardLayout>
-      {/* <DashboardNavbar /> */}
+      <DashboardNavbar />
       <MDBox py={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
@@ -72,7 +73,7 @@ function Dashboard() {
                   title="Matrix II Sales Counts"
                   description={
                     <>
-                      (<strong>+15%</strong>) increase in today sales.
+                      increase in month sales counts.
                     </>
                   }
                   date="Real-time updates"
@@ -83,10 +84,13 @@ function Dashboard() {
             <Grid item xs={12} md={6} lg={4}>
               <Card item lg={8} sx={{ height: "95%" }}>
                 <MDTypography component="div" variant="button" color="dark" fontWeight="bold" padding="50px">
-                  Matrix 2 :{ }<br />
-                  Matrix ECN :{}
-                  Matrix Boost :{}
-                  Double Matrix :{}
+                  <h2 style={{"text-align":"center"}}>Currently User Matrix : {}</h2><br/><hr/><br/>
+                  <h2 style={{"text-align":"center"}}>Matrix Price Update</h2><br/>
+                  <h3 style={{"text-align":"center","color":"black"}}>Matrix II :${}</h3><br/>
+                  <h3 style={{"text-align":"center","color":"black"}}>Matrix ECN :${}</h3><br/>
+                  <h3 style={{"text-align":"center","color":"black"}}>Matrix Boost :${}</h3><br/>
+                  <h3 style={{"text-align":"center","color":"black"}}>Double Matrix :${}</h3><br/>
+                  <h4 style={{"text-align":"center","color":"gray"}}>When users buy 1,000 one of matrices, the price of the matrix increases by $0.5</h4>                  
                 </MDTypography>
               </Card>
             </Grid>

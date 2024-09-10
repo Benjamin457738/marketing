@@ -51,7 +51,7 @@ function MDAlert({ color, dismissible, children, ...rest }) {
     case alertStatus === "mount":
       return alertTemplate();
     case alertStatus === "fadeOut":
-      setTimeout(() => setAlertStatus("unmount"), 400);
+      setTimeout(() => setAlertStatus("unmount"), 300);
       return alertTemplate(false);
     default:
       alertTemplate();

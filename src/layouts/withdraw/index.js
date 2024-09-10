@@ -1,61 +1,85 @@
-// @mui material components
-import Grid from "@mui/material/Grid";
+import React, { useState } from 'react';
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Snackbar,
+  Alert,
+  Grid,
+} from '@mui/material';
+import MDBox from 'components/MDBox';
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 
-// Material Dashboard 2 React components
-import MDBox from "components/MDBox";
+const Withdraw = () => {
+  const [amount, setAmount] = useState('');
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [message, setMessage] = useState('');
 
-// Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-// Data
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+  const handleWithdraw = () => {
+    // Basic validation
+    if (!amount || isNaN(amount) || Number(amount) <= 0) {
+      setMessage('Please enter a valid amount.');
+      setOpenSnackbar(true);
+      return;
+    }
 
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Card } from "@mui/material";
-import MDTypography from "components/MDTypography";
+    // Process withdrawal logic here (e.g., API call)
+    console.log(`Withdrawing: ${amount}`);
 
-function createData(
-  name,
-  calories,
-  fat,
-  carbs,
-  protein,
-) {
-  return { name, calories, fat, carbs, protein };
-}
+    // Clear the input field
+    setAmount('');
+    setMessage('Withdrawal successful!');
+    setOpenSnackbar(true);
+  };
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-function Withdraw() {
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
 
   return (
     <DashboardLayout>
-      {/* <DashboardNavbar /> */}
+      <DashboardNavbar />
       <MDBox mt={4.5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={12}>
-                <Card item lg={8} sx={{ height: "100%" }}>
-                  <MDTypography  component="div" variant="button" color="text" fontWeight="light" padding="50px">
-                    Matrix 2:{}
-                    M
-                  </MDTypography>
-                </Card>
-            </Grid>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={12} lg={12}>
+            <Container maxWidth="sm" style={{ padding: '20px' }}>
+              <Typography variant="h4" gutterBottom>
+                Withdrawal Funds
+              </Typography>
+              <TextField
+                label="Withdrawal Amount"
+                variant="outlined"
+                fullWidth
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                type="number"
+                style={{ marginBottom: '20px' }}
+              />
+              <Button
+                variant="contained"
+                color="dark"
+                onClick={handleWithdraw}
+                fullWidth
+              >
+                Withdraw
+              </Button>
+              <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+              >
+                <Alert onClose={handleCloseSnackbar} severity="info">
+                  {message}
+                </Alert>
+              </Snackbar>
+            </Container>
           </Grid>
-        </MDBox>
+        </Grid>
+      </MDBox>
     </DashboardLayout>
   );
-}
+};
 
 export default Withdraw;
