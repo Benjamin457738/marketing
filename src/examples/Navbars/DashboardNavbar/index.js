@@ -116,7 +116,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
             <MDBox color={light ? "white" : "inherit"}>
               <Link to="/authentication/sign-in/basic">
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <Icon sx={iconsStyle}>account_circle</Icon>
+                  <Icon sx={iconsStyle}>account_circle</Icon><p style={{"fontFamily":"sons", "fontSize":"15px", "margin-left":"5px"}}>Log Out</p>
                 </IconButton>
               </Link>
               {renderMenu()}
