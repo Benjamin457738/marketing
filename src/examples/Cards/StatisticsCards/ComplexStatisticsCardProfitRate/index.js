@@ -10,7 +10,7 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-function ComplexStatisticsCard({ color, title, count, percentage, icon }) {
+function ComplexStatisticsCardProfitRate({ color, title, count, percentage, icon }) {
   return (
     <Card>
       <MDBox display="flex" justifyContent="space-between" pt={1} px={2}>
@@ -35,16 +35,29 @@ function ComplexStatisticsCard({ color, title, count, percentage, icon }) {
           <MDTypography variant="button" fontWeight="bold" color="text" fontSize="25px">
             {title}
           </MDTypography>
-          <MDTypography variant="h4">{count}</MDTypography>
+          <MDTypography variant="h4" color="success">{count}</MDTypography>
         </MDBox>
       </MDBox>
       <Divider />
+      {/* <MDBox pb={2} px={2}>
+        <MDTypography component="p" variant="button" color="text" display="flex">
+          <MDTypography
+            component="span"
+            variant="button"
+            fontWeight="bold"
+            color={percentage.color}
+          >
+            {percentage.amount}
+          </MDTypography>
+          &nbsp;{percentage.label}
+        </MDTypography>
+      </MDBox> */}
     </Card>
   );
 }
 
-// Setting default values for the props of ComplexStatisticsCard
-ComplexStatisticsCard.defaultProps = {
+// Setting default values for the props of ComplexStatisticsCardProfitRate
+ComplexStatisticsCardProfitRate.defaultProps = {
   color: "info",
   percentage: {
     color: "success",
@@ -53,8 +66,8 @@ ComplexStatisticsCard.defaultProps = {
   },
 };
 
-// Typechecking props for the ComplexStatisticsCard
-ComplexStatisticsCard.propTypes = {
+// Typechecking props for the ComplexStatisticsCardProfitRate
+ComplexStatisticsCardProfitRate.propTypes = {
   color: PropTypes.oneOf([
     "primary",
     "secondary",
@@ -84,4 +97,4 @@ ComplexStatisticsCard.propTypes = {
   icon: PropTypes.node.isRequired,
 };
 
-export default ComplexStatisticsCard;
+export default ComplexStatisticsCardProfitRate;

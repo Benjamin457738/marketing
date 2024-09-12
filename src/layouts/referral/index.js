@@ -41,7 +41,7 @@ function Referral() {
       <DashboardNavbar />
       <MDBox mt={4.5}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={12}>
+          <Grid item xs={12} md={12} lg={12}>
             <Card item lg={8} sx={{ height: "100%" }}>
               <MDTypography component="div" variant="button" color="text" fontWeight="light" padding="50px">
               <h1>Share Private-Marketing with  friends</h1><br/>

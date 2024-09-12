@@ -8,15 +8,25 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import ComplexStatisticsCardProfit from "examples/Cards/StatisticsCards/ComplexStatisticsCardProfit";
+import ComplexStatisticsCardProfitRate from "examples/Cards/StatisticsCards/ComplexStatisticsCardProfitRate";
 
 // Data
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import MDTypography from "components/MDTypography";
 import { Card } from "@mui/material";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import MDUpdate from "components/MDUpdate";
+import MDSwitch from "components/MDSwitch";
+import reportsLineChartDataMatrixECN from "./data/reportsLineChartDataMatrixECN";
+import reportsLineChartDataMatrixBoost from "./data/reportsLineChartDataMatrixBoost";
+import reportsLineChartDataDoubleMatrix from "./data/reportsLineChartDataDoubleMatrix";
 
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  const { sales } = reportsLineChartData;
+  const { salesTwo } = reportsLineChartDataMatrixECN;
+  const { salesThree } = reportsLineChartDataMatrixBoost;
+  const { salesFour } = reportsLineChartDataDoubleMatrix;
 
 
   return (
@@ -36,7 +46,8 @@ function Dashboard() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
+              <ComplexStatisticsCardProfit
+                color="primary"
                 icon="leaderboard"
                 title="Profit"
                 count="$2,300"
@@ -45,11 +56,11 @@ function Dashboard() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
+              <ComplexStatisticsCardProfitRate
                 color="error"
                 icon="store"
                 title="Profit+"
-                count="34"
+                count="$34"
               />
             </MDBox>
           </Grid>
@@ -64,9 +75,10 @@ function Dashboard() {
             </MDBox>
           </Grid>
         </Grid>
+        <MDSwitch/>
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
+            <Grid item xs={12} md={6} lg={6}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="info"
@@ -81,16 +93,63 @@ function Dashboard() {
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Card item lg={8} sx={{ height: "95%" }}>
+            <Grid item xs={12} md={6} lg={6}>
+              <MDBox mb={3}>
+                <ReportsLineChart
+                  color="primary"
+                  title="Matrix ECN Sales Counts"
+                  description={
+                    <>
+                      increase in month sales counts.
+                    </>
+                  }
+                  date="Real-time updates"
+                  chart={salesTwo}
+                />
+              </MDBox>
+            </Grid>
+          </Grid>
+        </MDBox>
+        <MDBox mt={4.5}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6} lg={6}>
+              <MDBox mb={3}>
+                <ReportsLineChart
+                  color="warning"
+                  title="Matrix Boost Sales Counts"
+                  description={
+                    <>
+                      increase in month sales counts.
+                    </>
+                  }
+                  date="Real-time updates"
+                  chart={salesThree}
+                />
+              </MDBox>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+              <MDBox mb={3}>
+                <ReportsLineChart
+                  color="error"
+                  title="Double Matrix Sales Counts"
+                  description={
+                    <>
+                      increase in month sales counts.
+                    </>
+                  }
+                  date="Real-time updates"
+                  chart={salesFour}
+                />
+              </MDBox>
+            </Grid>
+          </Grid>
+        </MDBox>
+        <MDBox mt={4.5}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={12} lg={12} xl={12}>
+              <Card item lg={10} sx={{ height: "95%" }}>
                 <MDTypography component="div" variant="button" color="dark" fontWeight="bold" padding="50px">
-                  <h2 style={{"text-align":"center"}}>Currently User Matrix : {}</h2><br/><hr/><br/>
-                  <h2 style={{"text-align":"center"}}>Matrix Price Update</h2><br/>
-                  <h3 style={{"text-align":"center","color":"black"}}>Matrix II :${}</h3><br/>
-                  <h3 style={{"text-align":"center","color":"black"}}>Matrix ECN :${}</h3><br/>
-                  <h3 style={{"text-align":"center","color":"black"}}>Matrix Boost :${}</h3><br/>
-                  <h3 style={{"text-align":"center","color":"black"}}>Double Matrix :${}</h3><br/>
-                  <h4 style={{"text-align":"center","color":"gray"}}>When users buy 1,000 one of matrices, the price of the matrix increases by $0.5</h4>                  
+                  <MDUpdate />
                 </MDTypography>
               </Card>
             </Grid>

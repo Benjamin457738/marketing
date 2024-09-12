@@ -26,12 +26,15 @@ const Deposit = () => {
       <DashboardNavbar />
       <MDBox mt={4.5}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={12}>
+          <Grid item xs={12} md={8} lg={6} xl={5}>
             <Container maxWidth="sm">
               <Card style={{ marginTop: '20px', padding: '20px' }}>
                 <CardContent>
-                  <Typography variant="h4" component="h1" align="center" gutterBottom>
+                  <Typography variant="h4" component="h1" align="center" color="dodgerblue" gutterBottom>
                     Deposit Funds
+                  </Typography>
+                  <Typography variant="h6" component="h1" align="left" color="red" gutterBottom>
+                    Minium Deposit $50 USDT
                   </Typography>
                   <TextField
                     fullWidth
